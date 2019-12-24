@@ -91,5 +91,10 @@ if __name__ == "__main__":
 
     ax.set_xlabel('Horizontal Shift in Pixels')
     ax.set_ylabel('Vertical Shift in Pixels')
+    if len(sys.argv) == 8:
+        cmap_min = float(sys.argv[6])
+        cmap_max = float(sys.argv[7])
+        pos.set_clim(cmap_min, cmap_max)
+
     fig.colorbar(pos)
     plt.savefig('{}-{}-{}-{}-plot.png'.format(model, layer, dataset, comp))
