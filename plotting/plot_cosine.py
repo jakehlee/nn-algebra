@@ -81,7 +81,7 @@ if __name__ == "__main__":
             name = row[0]
             feat = float(row[1])
             r = int(name.split('_')[0])
-            c = int(name.split('_')[0])
+            c = int(name.split('_')[1])
             cs_array[r,c] = feat
 
     print("min:", np.min(cs_array))

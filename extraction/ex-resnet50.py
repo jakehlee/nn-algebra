@@ -19,6 +19,10 @@ def usage():
     sys.exit(0)
 
 if __name__ == "__main__":
+
+    if len(sys.argv) != 4:
+        usage()
+
     img_dir = sys.argv[1]
     out_dir = sys.argv[2]
     class_id = int(sys.argv[3])
