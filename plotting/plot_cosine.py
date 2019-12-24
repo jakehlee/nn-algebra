@@ -1,3 +1,4 @@
+import sys, os
 import numpy as np
 import csv
 from scipy import spatial
@@ -26,7 +27,7 @@ if __name__ == "__main__":
 
     with open(csvfile, 'r') as f:
         reader = csv.reader(f)
-        all_feats = list(reader)
+        all_feats = np.array(list(reader))
 
     max_r = 0
     max_c = 0
@@ -44,7 +45,9 @@ if __name__ == "__main__":
 
     feat_array = np.zeros((max_r+1, max_c+1, feat_len))
     cs_array = np.zeros((max_r+1, max_c+1))
-
+    
+    PROB = False
+    COSINE = False
     if feat_len == 1:
         PROB = True
     else:
@@ -54,19 +57,19 @@ if __name__ == "__main__":
         for row in all_feats:
             name = row[0]
             feat = np.array(row[1:]).astype(float)
-            r = name.split('_')[0]
-            c = name.split('_')[1]
+            r = int(name.split('_')[0])
+            c = int(name.split('_')[1])
             feat_array[r,c] = feat
 
-        if comp == 'tl'
+        if comp == 'tl':
             compvect = feat_array[0, 0]
-        elif comp == 'tr'
+        elif comp == 'tr':
             compvect = feat_array[0, max_c]
-        elif comp == 'c'
+        elif comp == 'c':
             compvect = feat_array[max_r // 2, max_c // 2]
-        elif comp == 'bl'
+        elif comp == 'bl':
             compvect = feat_array[max_r, 0]
-        elif comp == 'br'
+        elif comp == 'br':
             compvect = feat_array[max_r, max_c]
 
         for i in range(max_r+1):
@@ -77,8 +80,8 @@ if __name__ == "__main__":
         for row in all_feats:
             name = row[0]
             feat = float(row[1])
-            r = name.split('_')[0]
-            c = name.split('_')[0]
+            r = int(name.split('_')[0])
+            c = int(name.split('_')[0])
             cs_array[r,c] = feat
 
     fig, ax = plt.subplots()
