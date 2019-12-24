@@ -84,6 +84,9 @@ if __name__ == "__main__":
             c = int(name.split('_')[0])
             cs_array[r,c] = feat
 
+    print("min:", np.min(cs_array))
+    print("max:", np.max(cs_array))
+
     fig, ax = plt.subplots()
     pos = ax.imshow(cs_array, cmap='hot')
 
