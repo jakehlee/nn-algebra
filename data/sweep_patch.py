@@ -8,6 +8,7 @@ def shift_patch(patchpath, bgpath, patchsize, bgsize, stride, outdir, expname):
 	
 	if not os.path.isdir(outdir):
 		os.mkdir(outdir)
+		os.mkdir(os.path.join(outdir, "sub"))
 
 	patch = cv2.imread(patchpath, cv2.IMREAD_UNCHANGED)
 	bg = cv2.imread(bgpath, cv2.IMREAD_COLOR)
@@ -35,7 +36,7 @@ def shift_patch(patchpath, bgpath, patchsize, bgsize, stride, outdir, expname):
 				p_alpha * patch[:,:,2]
 
 			out_name = "{}_{}_{}.png".format(i, j, expname)
-			out_path = os.path.join(outdir, out_name)
+			out_path = os.path.join(outdir, "sub", out_name)
 
 			cv2.imwrite(out_path, out)
 			counter += 1
