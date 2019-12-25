@@ -104,3 +104,16 @@ if __name__ == "__main__":
 
     fig.colorbar(pos)
     plt.savefig('{}-{}-{}-{}-plot.png'.format(model, layer, dataset, comp))
+
+    # save out csv for d3
+
+    csv_export = []
+    for i in range(cs_array.shape[0]):
+        for j in range(cs_array.shape[1]):
+            val = cs_array[i, j]
+            csv_export.append([i, j, val])
+
+    with open('{}-{}-{}-{}-d3.csv'.format(model, layer, dataset, comp), 'w') as f:
+        writer = csv.writer(f)
+        writer.writerows(csv_export)
+
