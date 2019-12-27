@@ -115,5 +115,6 @@ if __name__ == "__main__":
 
     with open('{}-{}-{}-{}-d3.csv'.format(model, layer, dataset, comp), 'w') as f:
         writer = csv.writer(f)
+        writer.writerow(["y", "x", "val"])
         writer.writerows(csv_export)
 
