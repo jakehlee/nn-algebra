@@ -87,6 +87,24 @@ if __name__ == "__main__":
     print("min:", np.min(cs_array))
     print("max:", np.max(cs_array))
 
+    fig, ax = plt.subplots()
+    pos = ax.imshow(cs_array, cmap='hot')
+
+    if COSINE:
+        ax.set_title('Cosine Similarity of Shifted Object Features\n{} {} on {}, comp. to {}'.format(model, layer, dataset, comp))
+    if PROB:
+        ax.set_title('Correct Class Prob. of Shifted Object Features\n {} on {}'.format(model, dataset))
+
+    ax.set_xlabel('Horizontal Shift in Pixels')
+    ax.set_ylabel('Vertical Shift in Pixels')
+    if len(sys.argv) == 8:
+        cmap_min = float(sys.argv[6])
+        cmap_max = float(sys.argv[7])
+        pos.set_clim(cmap_min, cmap_max)
+
+    fig.colorbar(pos)
+    plt.savefig('{}-{}-{}-{}-plot.png'.format(model, layer, dataset, comp))
+
     # save out csv for d3
 
     csv_export = []

@@ -2,3 +2,5 @@ data/datasets
 extraction/models_lpf
 extraction/output/*
 plotting/resnet50
+plotting/alexnet
+plotting/vgg16

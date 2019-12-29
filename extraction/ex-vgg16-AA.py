@@ -12,6 +12,8 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 
+import models_lpf.vgg
+
 BATCH = 64
 
 def usage():
@@ -39,7 +41,8 @@ if __name__ == "__main__":
     dataset = datasets.ImageFolder(root=img_dir, transform=img_transform)
     dataset_loader = data.DataLoader(dataset, batch_size=BATCH)
 
-    model = models.vgg16(pretrained=True)
+    model = models_lpf.vgg.vgg16(filter_size=5)
+    model.load_state_dict(torch.load('/home/jhl2195/antialiased-cnns/weights/vgg16_lpf5.pth.tar')['state_dict'])
     model.cuda()
     model.eval()
  

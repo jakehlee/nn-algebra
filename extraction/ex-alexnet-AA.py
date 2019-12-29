@@ -12,7 +12,9 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 
-BATCH = 64
+import models_lpf.alexnet
+
+BATCH = 128
 
 def usage():
     print("Usage: python ex-model.py img_dir out_dir class_id")
@@ -39,18 +41,19 @@ if __name__ == "__main__":
     dataset = datasets.ImageFolder(root=img_dir, transform=img_transform)
     dataset_loader = data.DataLoader(dataset, batch_size=BATCH)
 
-    model = models.vgg16(pretrained=True)
+    model = models_lpf.alexnet.alexnet(filter_size=5)
+    model.load_state_dict(torch.load('/home/jhl2195/antialiased-cnns/weights/alexnet_lpf5.pth.tar')['state_dict'])
     model.cuda()
     model.eval()
  
     # 1: 
-    fc6 = model._modules.get('classifier')[0]
+    fc6 = model._modules.get('classifier')[1]
     # 2:
-    fc6relu = model._modules.get('classifier')[1]
+    fc6relu = model._modules.get('classifier')[2]
     # 4:
-    fc7 = model._modules.get('classifier')[3]
+    fc7 = model._modules.get('classifier')[4]
     # 5:
-    fc7relu = model._modules.get('classifier')[4]
+    fc7relu = model._modules.get('classifier')[5]
     
     fc6_buf = torch.zeros(BATCH,4096).cuda()
     fc6relu_buf = torch.zeros(BATCH,4096).cuda()
