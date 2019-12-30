@@ -15,6 +15,8 @@ class ConvShortout(torch.nn.Module):
 
     def forward(self, X):
         if self.training:
+            if p == 0:
+                return X
             # I'm assuming that X is (N, C, H, W).
 
             # 1. Maxpool the entire channel
