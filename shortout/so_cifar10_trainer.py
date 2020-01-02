@@ -11,8 +11,8 @@ cifar_train = torchvision.datasets.CIFAR10("./data/CIFAR10",
                                            train = True,
                                            download = True,
                                            transform = torchvision.transforms.Compose([
-                                           		transforms.RandomCrop(32, padding=4),
-                                           		transforms.RandomHorizontalFlip(),
+                                                transforms.RandomCrop(32, padding=4),
+                                                transforms.RandomHorizontalFlip(),
                                                 transforms.ToTensor(),
                                                 transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
                                            ])
@@ -36,14 +36,14 @@ loss_fn = nn.CrossEntropyLoss()
 
 log = []
 for epoch in range(40):
-	if epoch < 10:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.1)
-	elif epoch < 20:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.01)
-	elif epoch < 30:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.001)
-	elif epoch < 40:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.0001)
+    if epoch < 10:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.1)
+    elif epoch < 20:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.01)
+    elif epoch < 30:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.001)
+    elif epoch < 40:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.0001)
 
     running_losses = []
     running_accs = []
@@ -88,8 +88,8 @@ for epoch in range(40):
 timestr = time.strftime("%Y%m%d_%H%M%S")
 logname = "so_trainlog_" + timestr + ".csv"
 with open(logname, 'r') as f:
-	writer = csv.writer(f)
-	writer.writerows(log)
+    writer = csv.writer(f)
+    writer.writerows(log)
 
 # save model out
 modelname = "so_weights_" + timestr + ".csv"

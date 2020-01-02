@@ -33,14 +33,14 @@ loss_fn = nn.CrossEntropyLoss()
 
 log = []
 for epoch in range(40):
-	if epoch < 10:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.1)
-	elif epoch < 20:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.01)
-	elif epoch < 30:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.001)
-	elif epoch < 40:
-		opt = torch.optim.Adam(shortout_model.parameters(), lr=0.0001)
+    if epoch < 10:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.1)
+    elif epoch < 20:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.01)
+    elif epoch < 30:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.001)
+    elif epoch < 40:
+        opt = torch.optim.Adam(shortout_model.parameters(), lr=0.0001)
 
     running_losses = []
     running_accs = []
@@ -85,8 +85,8 @@ for epoch in range(40):
 timestr = time.strftime("%Y%m%d_%H%M%S")
 logname = "bm_trainlog_" + timestr + ".csv"
 with open(logname, 'r') as f:
-	writer = csv.writer(f)
-	writer.writerows(log)
+    writer = csv.writer(f)
+    writer.writerows(log)
 
 # save model out
 modelname = "bm_weights_" + timestr + ".csv"
