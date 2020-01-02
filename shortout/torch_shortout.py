@@ -40,5 +40,5 @@ class ConvShortout(nn.Module):
 
             # 3. Replace dropped values with maxes
             # no rescaling for now...
-            shorted = mask * X + (1-mask) * maxes3
-            return shorted
+            X = mask * X + (1-mask) * maxes3
+        return X

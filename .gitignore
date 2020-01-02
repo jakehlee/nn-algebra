@@ -6,3 +6,4 @@ plotting/alexnet
 plotting/vgg16
 plotting/mobilev2
 shortout/data
+shortout/__pycache__/
