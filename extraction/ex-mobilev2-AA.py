@@ -12,6 +12,8 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 
+import models_lpf.mobilenet
+
 BATCH = 64
 
 def usage():
@@ -40,6 +42,8 @@ if __name__ == "__main__":
     dataset_loader = data.DataLoader(dataset, batch_size=BATCH)
 
     model = models.mobilenet_v2(pretrained=True)
+    model = models_lpf.mobilenet.mobilenet_v2(filter_size=5)
+    model.load_state_dict(torch.load('/home/jhl2195/antialiased-cnns/weights/mobilenet_v2_lpf5.pth.tar')['state_dict'])
     model.cuda()
     model.eval()
 

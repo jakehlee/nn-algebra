@@ -4,3 +4,4 @@ extraction/output/*
 plotting/resnet50
 plotting/alexnet
 plotting/vgg16
+plotting/mobilev2
