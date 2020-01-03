@@ -5,5 +5,8 @@ plotting/resnet50
 plotting/alexnet
 plotting/vgg16
 plotting/mobilev2
+plotting/resnet18
 shortout/data
-shortout/__pycache__/
+shortout/chkpt
+shortout/log
+__pycache__/

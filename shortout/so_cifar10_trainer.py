@@ -90,7 +90,7 @@ for epoch in range(60):
     if (epoch+1) % 10 == 0:
         # save model out
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        modelname = "chkpt/so_weights_" + timestr + "_" + str(epoch)+".csv"
+        modelname = "chkpt/so_weights_" + timestr + "_" + str(epoch)+".pth"
         torch.save(model.state_dict(), modelname)
 
 
