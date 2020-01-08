@@ -6,6 +6,7 @@ plotting/alexnet
 plotting/vgg16
 plotting/mobilev2
 plotting/resnet18
+plotting/resnet18-100/
 shortout/data
 shortout/chkpt
 shortout/log

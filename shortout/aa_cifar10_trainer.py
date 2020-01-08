@@ -6,8 +6,7 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
-
-import bm_resnet18 as bm
+import models_lpf.resnet
 from utils import accuracy
 
 cifar_train = torchvision.datasets.CIFAR10("./data/CIFAR10",
@@ -34,7 +33,7 @@ train_dl = torch.utils.data.DataLoader(cifar_train, batch_size=128, shuffle=True
 test_dl = torch.utils.data.DataLoader(cifar_test, batch_size=100, shuffle=False, num_workers=4)
 
 
-model = bm.resnet18().cuda()
+model = models_lpf.resnet.resnet18(filter_size=3).cuda()
 loss_fn = nn.CrossEntropyLoss()
 
 log = []
@@ -88,20 +87,21 @@ for epoch in range(100):
     log.append([epoch, train_loss, train_acc, test_loss, test_acc])
     print("{}, {}, {}, {}, {}".format(epoch, train_loss, train_acc, test_loss, test_acc))
 
-    # checkpoint
     if (epoch+1) % 10 == 0:
-        print("saving checkpoint...")
         # save model out
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        modelname = "chkpt/bm_weights_" + timestr + "_" + str(epoch) + ".pth"
+        modelname = "chkpt/aa_weights_" + timestr + "_" + str(epoch)+".pth"
         torch.save(model.state_dict(), modelname)
+
 
 # save log out
 timestr = time.strftime("%Y%m%d_%H%M%S")
-logname = "log/bm_trainlog_" + timestr + ".csv"
+logname = "log/aa_trainlog_" + timestr + ".csv"
 with open(logname, 'w') as f:
     writer = csv.writer(f)
     writer.writerows(log)
+
+
 
 
 

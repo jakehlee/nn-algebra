@@ -22,6 +22,7 @@ class ConvShortout(nn.Module):
 
             # 1. Maxpool the entire channel
             maxes = torch.nn.functional.max_pool2d(X, kernel_size=X.size()[2:])
+            #maxes.detach()
             #maxes = nn.AdaptiveMaxPool2d((1,1))
             # maxes will be (N, C, 1, 1)
             maxes2 = torch.cat([maxes] * X.size(2), 2)
@@ -40,5 +41,9 @@ class ConvShortout(nn.Module):
 
             # 3. Replace dropped values with maxes
             # no rescaling for now...
-            X = mask * X + (1-mask) * maxes3
+            out = mask * X + (1-mask) * maxes3
+
+            # let's try scaling - roughly p% are going to max, inceasing
+            # magnitude. Decrease by multiplying the whole thing by keep prob
+            X = out * (1 - self.p)
         return X

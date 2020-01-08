@@ -136,9 +136,9 @@ class ResNetShortout(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
 
-        self.shortout1 = ConvShortout(p=0.1)
-        self.shortout2 = ConvShortout(p=0.1)
-        self.shortout3 = ConvShortout(p=0.1)
+        self.shortout1 = ConvShortout(p=0.15)
+        self.shortout2 = ConvShortout(p=0.15)
+        self.shortout3 = ConvShortout(p=0.15)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):

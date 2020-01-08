@@ -38,7 +38,7 @@ if __name__ == "__main__":
     dataset_loader = data.DataLoader(dataset, batch_size=BATCH)
 
     model = resnet18()
-    model.load_state_dict(torch.load('/home/jhl2195/nn-algebra/shortout/chkpt/bm_weights_20200102_210700_39.pth'))
+    model.load_state_dict(torch.load('/home/jhl2195/nn-algebra/shortout/chkpt/bm_weights_20200104_052930_59.pth'))
 
     model.cuda()
     model.eval()

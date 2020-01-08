@@ -12,7 +12,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 
-from models_exp.so_resnet18 import resnet18Shortout
+import models_lpf.resnet
 
 BATCH = 64
 
@@ -37,8 +37,8 @@ if __name__ == "__main__":
     dataset = datasets.ImageFolder(root=img_dir, transform=img_transform)
     dataset_loader = data.DataLoader(dataset, batch_size=BATCH)
 
-    model = resnet18Shortout()
-    model.load_state_dict(torch.load('/home/jhl2195/nn-algebra/shortout/chkpt/so_weights_20200106_004611_59.pth'))
+    model = models_lpf.resnet.resnet18(filter_size=3).cuda()
+    model.load_state_dict(torch.load('/home/jhl2195/nn-algebra/shortout/chkpt/aa_weights_20200108_000507_59.pth'))
 
     model.cuda()
     model.eval()

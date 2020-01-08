@@ -38,10 +38,10 @@ loss_fn = nn.CrossEntropyLoss()
 
 log = []
 opt = None
-for epoch in range(60):
+for epoch in range(100):
     if epoch == 0:
         opt = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9, weight_decay=1e-4)
-    elif epoch == 30:
+    elif epoch == 50:
         opt = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
 
     running_loss = 0
